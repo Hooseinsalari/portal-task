@@ -35,7 +35,7 @@ async function HomeProducts() {
     <div className="grid grid-cols-4 gap-8">
       {products.map((item) => (
         <Link
-          href={`/${item.id}`}
+          href={`product/${item.id}`}
           key={item.id}
           className="bg-white rounded-md shadow overflow-hidden px-4"
         >
