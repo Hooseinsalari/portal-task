@@ -3,26 +3,11 @@ import { TProduct } from "../types/product.type";
 import { truncateText } from "@/lib/helpers/truncateText";
 import Link from "next/link";
 
-async function fetchProducts(): Promise<TProduct[]> {
-  try {
-    const response = await fetch("https://fakestoreapi.com/products", {
-      cache: "no-store",
-    });
+type Props = {
+  products: TProduct[];
+};
 
-    if (!response.ok) {
-      throw new Error(`Failed to fetch products: ${response.status}`);
-    }
-
-    return await response.json();
-  } catch (error) {
-    console.error("Error fetching products:", error);
-    return [];
-  }
-}
-
-async function HomeProducts() {
-  const products = await fetchProducts();
-
+async function HomeProducts({ products }: Props) {
   if (!products.length) {
     return (
       <div className="text-center text-slate-500 py-10">
